@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-block: 8px;
+    width: 300px;
+}
+
+form input{
+    border-radius: 4px;
+    padding: 8px;
+    border: 1px solid lightgray;
+    width: 200px;
+}
+.submit-btn{
+    background-color: lightcyan;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+
+
+
+
+    

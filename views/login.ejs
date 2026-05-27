@@ -1,0 +1,16 @@
+<%- include("partials/header.ejs")  %>
+    <h1>LOG IN</h1>
+    <form action="/login" method="post">
+            <input class="email-input" type="email" name="email" placeholder="email"> 
+            <input class="password-input" type="password" name="password" placeholder="password">
+        <button class="submit-btn">log in</button>
+    </form>
+    <div>
+        <a>
+           forgot password?
+        </a>
+    </div>
+    <div>
+        <a  href="/register">create new account</a>
+    </div>
+<%- include("partials/footer.ejs")  %>
