@@ -7,11 +7,39 @@
 
 body{
     font-size: 16px;
+    margin: 0;
+    min-height: 100vh;
+}
+
+main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 80px);
+}
+
+.nav-bar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: lightcyan;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    align-self: center;
+    padding-right: 20px;
+}
+
+.navbar-image{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    bottom: 8px;
+    margin-right: 4px;
 }
 
 form{
@@ -36,6 +64,24 @@ form input{
     padding: 8px 16px;
     border-radius: 8px;
 }
+.logout-form{
+     display: flex;
+     justify-content: start;
+     align-items: start;
+     margin-left: auto;
+     width: fit-content;
+
+}
+.logout-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: rgb(173, 30, 30);
+    cursor: pointer;
+}
+
 
 .flash {
     position: fixed;
