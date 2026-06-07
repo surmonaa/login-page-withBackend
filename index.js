@@ -15,6 +15,17 @@ app.use(session({
     saveUninitialized: false
 }));
 
+app.use((req, res, next) => {
+    req.flash = (type, message) => {
+        req.session.flash = { type, message };
+    };
+
+    res.locals.flash = req.session.flash;
+    delete req.session.flash;
+
+    next();
+});
+
 const users = JSON.parse(
     fs.readFileSync("./data/users.json")
 );
@@ -50,6 +61,15 @@ app.get("/dashboard", isLoggedIn, (req, res) => {
 });
 
 app.post("/register" , async (req, res) => {
+    const existingUser = users.find(
+        u => u.email === req.body.email
+    );
+
+    if (existingUser) {
+        req.flash("error", "Email already exists");
+        return res.redirect("/register");
+    }
+    
     const hashedPassword =  await bcrypt.hash(req.body.password, 10);
     const newUser = {
         id: Date.now(),
@@ -60,11 +80,12 @@ app.post("/register" , async (req, res) => {
     users.push(newUser);
 
     fs.writeFileSync("./data/users.json", JSON.stringify(users, null, 2));
-
+    
+    req.flash("success", "Account created successfully");
     res.redirect("/");
 })
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
     const plainPassword = req.body.password;
     const email = req.body.email;
     const user = users.find(u =>
@@ -72,27 +93,35 @@ app.post("/login", (req, res) => {
     );
 
      if (!user) {
-        return res.send("User not found");
+        req.flash("error", "User not found");
+        return res.redirect("/");
+
     }
 
-    const isMatch = bcrypt.compareSync(plainPassword, user.password);
-
-
-    if(isMatch){
-        req.session.user = {
+    const isMatch = await  bcrypt.compare(plainPassword, user.password);
+   
+    if (isMatch) {
+    req.session.user = {
         id: user.id,
         email: user.email
     };
-        res.redirect("/dashboard")
-    }else {
-        res.send("password is incorrect");
-    }    
+
+    req.flash("success", "Welcome back!");
+    res.redirect("/dashboard");
+} else {
+    req.flash("error", "Password is incorrect");
+    res.redirect("/");
+};
 });
 
 app.post("/logout", (req, res) => {
-    req.session.destroy(() => {
-        res.redirect("/");
-    })
-})
+    req.session.flash = {
+        type: "success",
+        message: "Logged out successfully"
+    };
+
+    req.session.user = null;
+    res.redirect("/");
+});
 
 app.listen(port);
