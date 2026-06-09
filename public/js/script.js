@@ -3,19 +3,21 @@ const passwordInput = document.querySelectorAll(".password-input");
 const repeatPasswordInput = document.getElementById("repeat-password");
 const registerSubmitBtn = document.getElementById("submit-btn");
 const toggleButtons = document.querySelectorAll(".toggle-password");
+const togglePasswordButton = document.querySelectorAll(".toggle-password-image");
 
 
 toggleButtons.forEach((button) => {
     button.addEventListener("click", (e) => { 
         e.preventDefault();
         const input = button.previousElementSibling;
+        const img = button.querySelector("img");
 
         if (input.type === "password") {
             input.type = "text";
-            button.textContent = "Hide";
+            img.src = "/images/passwordShowSVG.svg";
         } else {
             input.type = "password";
-            button.textContent = "Show";
+            img.src = "/images/passwordHideSVG.svg";
         }
     });
 });

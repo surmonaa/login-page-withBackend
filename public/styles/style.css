@@ -63,13 +63,17 @@ form input{
 }
 .toggle-password{
     position: absolute;
-    right: 16px;
-    top: 50%;
+    right: 8px;
+    top: 55%;
     transform: translateY(-50%);
     border-radius: 20px;
     border: 0;
     background: transparent;
     cursor: pointer; 
+}
+.toggle-password-image{
+    width: 20px;
+    height: 20px;
 }
 .submit-btn{
     background-color: lightcyan;
