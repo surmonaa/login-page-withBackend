@@ -1,7 +1,24 @@
 const registerEmailInput = document.getElementById("email-input");
-const registerPasswordInput = document.getElementById("password-input");
+const passwordInput = document.querySelectorAll(".password-input");
 const repeatPasswordInput = document.getElementById("repeat-password");
 const registerSubmitBtn = document.getElementById("submit-btn");
+const toggleButtons = document.querySelectorAll(".toggle-password");
+
+
+toggleButtons.forEach((button) => {
+    button.addEventListener("click", (e) => { 
+        e.preventDefault();
+        const input = button.previousElementSibling;
+
+        if (input.type === "password") {
+            input.type = "text";
+            button.textContent = "Hide";
+        } else {
+            input.type = "password";
+            button.textContent = "Show";
+        }
+    });
+});
 
 
 if (repeatPasswordInput) {
@@ -9,9 +26,9 @@ if (repeatPasswordInput) {
 
     function checkPasswords() {
         if (
-            registerPasswordInput.value === repeatPasswordInput.value &&
-            registerPasswordInput.value !== "" &&
-            registerPasswordInput.value.length > 7
+            passwordInput.value === repeatPasswordInput.value &&
+            passwordInput.value !== "" &&
+            passwordInput.value.length > 7
         ) {
             registerSubmitBtn.disabled = false;
         } else {
@@ -19,7 +36,7 @@ if (repeatPasswordInput) {
         }
     }
 
-    registerPasswordInput.addEventListener("input", checkPasswords);
+    passwordInput.addEventListener("input", checkPasswords);
     repeatPasswordInput.addEventListener("input", checkPasswords);
 }
 

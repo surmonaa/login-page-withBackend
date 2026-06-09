@@ -3,8 +3,14 @@
     <h1>REGISTER</h1>
     <form action="/register" method="post">
             <input id="email-input" type="email" name="email" placeholder="email"> 
-            <input id="password-input" type="password" name="password" placeholder="password">
-            <input id="repeat-password" type="password" name="repeat-password" placeholder="repeat password">
+            <span class="register-password-span">
+                <input id="passwordInput" class="password-input" type="password" name="password" placeholder="password">
+                <button class="toggle-password">show</button>
+            </span>
+            <span class="repeat-password-span">
+                <input id="repeat-password" class="password-input" type="password" name="repeat-password" placeholder="repeat password">
+                <button class="toggle-password">show</button>
+            </span>
         <button id="submit-btn" class="submit-btn">register</button>    
     </form>
 <%- include("partials/footer.ejs")  %>

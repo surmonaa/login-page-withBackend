@@ -58,6 +58,19 @@ form input{
     border: 1px solid lightgray;
     width: 200px;
 }
+.password-span, .register-password-span , .repeat-password-span{
+    position: relative;
+}
+.toggle-password{
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 20px;
+    border: 0;
+    background: transparent;
+    cursor: pointer; 
+}
 .submit-btn{
     background-color: lightcyan;
     border: 0;
